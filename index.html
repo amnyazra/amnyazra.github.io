@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roushan Fikri El Amny Azra — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --bg: #080C18;
+    --surface: #0D1526;
+    --panel: #111E35;
+    --cyan: #00D4FF;
+    --lime: #A8FF3E;
+    --violet: #7B4FFF;
+    --text: #E8F0FF;
+    --muted: #6B82A8;
+    --border: rgba(0,212,255,0.15);
+    --glow: rgba(0,212,255,0.25);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── GRID BACKGROUND ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(8,12,24,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--muted); font-weight: 400; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ─── HERO ─── */
+  #home {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    overflow: hidden;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 20%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-glow-2 {
+    position: absolute;
+    bottom: 10%; right: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(123,79,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--cyan);
+  }
+  h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  h1 .highlight {
+    background: linear-gradient(135deg, var(--cyan), var(--lime));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+  }
+  .hero-role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--lime);
+    margin: 20px 0 24px;
+    letter-spacing: 0.05em;
+  }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 40px;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    text-decoration: none;
+    transition: all 0.25s;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--bg);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover { background: var(--lime); box-shadow: 0 0 30px rgba(168,255,62,0.4); }
+  .btn-outline {
+    background: transparent;
+    color: var(--cyan);
+    border: 1px solid var(--cyan);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-outline:hover { background: rgba(0,212,255,0.08); box-shadow: 0 0 20px var(--glow); }
+
+  /* ─── HUD CARD ─── */
+  .hero-hud {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .hud-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+  .hud-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--cyan);
+  }
+  .hud-card:hover {
+    border-color: rgba(0,212,255,0.4);
+    box-shadow: 0 0 20px rgba(0,212,255,0.08);
+  }
+  .hud-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--cyan);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .hud-card-value {
+    font-family: 'Orbitron', monospace;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 600;
+  }
+  .hud-card-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .status-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--lime);
+    margin-right: 6px;
+    box-shadow: 0 0 8px var(--lime);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  section { position: relative; z-index: 1; }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .section-wrap {
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 120px;
+  }
+  h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 48px;
+    color: var(--text);
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .info-row {
+    display: flex;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,212,255,0.07);
+    align-items: flex-start;
+  }
+  .info-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    min-width: 140px;
+    padding-top: 2px;
+  }
+  .info-val {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stat-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 24px;
+    text-align: center;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+  }
+  .stat-box .num {
+    font-family: 'Orbitron', monospace;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--cyan);
+    display: block;
+  }
+  .stat-box .lbl { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* ─── TABLE SECTION ─── */
+  .tbl-section { padding: 80px 0; }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table thead th {
+    background: rgba(0,212,255,0.06);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    text-align: left;
+  }
+  .data-table tbody td {
+    border: 1px solid rgba(0,212,255,0.07);
+    padding: 12px 16px;
+    color: var(--text);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .data-table tbody tr { transition: background 0.2s; }
+  .data-table tbody tr:hover { background: rgba(0,212,255,0.04); }
+  .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .badge-lime {
+    border-color: var(--lime);
+    color: var(--lime);
+  }
+  .badge-violet {
+    border-color: var(--violet);
+    color: #B69CFF;
+  }
+  .year-tag {
+    font-family: 'Orbitron', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ─── PROJECT CARDS ─── */
+  #projects { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .proj-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+  }
+  .proj-card::after {
+    content: '';
+    position: absolute;
+    top: -1px; right: -1px;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 0 20px 20px 0;
+    border-color: transparent var(--cyan) transparent transparent;
+    opacity: 0.5;
+  }
+  .proj-card:hover {
+    border-color: rgba(0,212,255,0.35);
+    box-shadow: 0 0 30px rgba(0,212,255,0.07);
+    transform: translateY(-3px);
+  }
+  .proj-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    color: var(--cyan);
+    opacity: 0.5;
+    letter-spacing: 0.2em;
+    margin-bottom: 16px;
+  }
+  .proj-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+  .proj-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--lime);
+    margin-top: 16px;
+  }
+  .proj-icon {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--cyan);
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { padding: 100px 48px; max-width: 1200px; margin: 0 auto; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .contact-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cyan);
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .contact-val { font-size: 14px; color: var(--text); }
+  .contact-val a { color: var(--text); text-decoration: none; }
+  .contact-val a:hover { color: var(--cyan); }
+  .contact-tagline {
+    font-family: 'Orbitron', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .contact-tagline span { color: var(--cyan); }
+  .contact-sub { color: var(--muted); font-size: 14px; line-height: 1.8; margin-bottom: 32px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+  }
+  .footer-copy {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .footer-copy span { color: var(--cyan); }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a {
+    color: var(--muted);
+    font-size: 16px;
+    transition: color 0.2s;
+    text-decoration: none;
+  }
+  .footer-links a:hover { color: var(--cyan); }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ─── SCANLINE EFFECT ─── */
+  .scanline-accent {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0.6;
+  }
+
+  /* ─── TYPING CURSOR ─── */
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--cyan);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    #home { padding: 100px 24px 60px; }
+    .hero-content { grid-template-columns: 1fr; gap: 48px; }
+    .section-wrap, #contact { padding: 60px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; padding: 24px; }
+    .container { padding: 0 24px; }
+    .tbl-section { padding: 60px 24px; }
+  }
+
+  /* ─── SCROLL ANIMATION ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ROUSHAN<span>.FIKRI</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Automation Engineering Technology</div>
+      <h1>
+        Roushan Fikri
+        <span class="highlight">El Amny Azra</span>
+      </h1>
+      <div class="hero-role">
+        <span class="status-dot"></span>
+        PLC Engineer · Student Researcher · Organization Leader
+      </div>
+      <p class="hero-desc">
+        Mahasiswa Teknologi Rekayasa Otomasi Universitas Diponegoro dengan pengalaman luas di organisasi, kepanitian, dan proyek teknis berbasis PLC, Arduino, dan sistem kontrol otomasi industri.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-cogs"></i> Lihat Proyek</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-satellite-dish"></i> Kontak</a>
+      </div>
+    </div>
+    <div class="hero-hud">
+      <div class="hud-card">
+        <div class="hud-card-title">// Institusi</div>
+        <div class="hud-card-value">Universitas Diponegoro</div>
+        <div class="hud-card-sub">Sekolah Vokasi — 2023–Sekarang</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-card-title">// NIM</div>
+        <div class="hud-card-value">40040323650048</div>
+        <div class="hud-card-sub">Program Studi: Teknologi Rekayasa Otomasi</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-card-title">// Status</div>
+        <div class="hud-card-value"><span class="status-dot"></span>Active Student</div>
+        <div class="hud-card-sub">Kepala Divisi Kurikulum Kaderisasi — HIMATRO 2025/2026</div>
+      </div>
+      <div class="hud-card">
+        <div class="hud-card-title">// Asal</div>
+        <div class="hud-card-value">Cirebon, Jawa Barat</div>
+        <div class="hud-card-sub">Lahir 26 Februari 2005</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap fade-in">
+    <div class="section-label">01 // Personal Data</div>
+    <h2>Profil Data Diri</h2>
+    <div class="about-grid">
+      <div>
+        <div class="info-row">
+          <div class="info-key">Nama</div>
+          <div class="info-val">Roushan Fikri El Amny Azra</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">NIM</div>
+          <div class="info-val">40040323650048</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Program Studi</div>
+          <div class="info-val">Teknologi Rekayasa Otomasi</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Tempat Lahir</div>
+          <div class="info-val">Cirebon, 26 Februari 2005</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Jenis Kelamin</div>
+          <div class="info-val">Laki-Laki</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Agama</div>
+          <div class="info-val">Islam</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Alamat</div>
+          <div class="info-val">Jl. Suratno Gang Suratno II No. 24 RT/RW 02/02, Kel. Kebon Baru, Kec. Kejaksan, Kota Cirebon, Jawa Barat 45124</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">No. Handphone</div>
+          <div class="info-val">+62 881022154103</div>
+        </div>
+        <div class="info-row">
+          <div class="info-key">Email</div>
+          <div class="info-val">
+            amnyazra26@gmail.com<br>
+            roushanfikriel@students.undip.ac.id
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--cyan);letter-spacing:.15em;text-transform:uppercase;margin-bottom:20px;">// Pendidikan Formal</h3>
+        <div class="data-table" style="margin-bottom:40px;">
+          <table style="width:100%;border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th class="data-table" style="background:rgba(0,212,255,0.06);border:1px solid var(--border);padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);text-align:left;">Instansi Pendidikan</th>
+                <th class="data-table" style="background:rgba(0,212,255,0.06);border:1px solid var(--border);padding:10px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);text-align:left;">Tahun</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="border:1px solid rgba(0,212,255,0.07);padding:12px 14px;color:var(--text);">Universitas Diponegoro</td>
+                <td style="border:1px solid rgba(0,212,255,0.07);padding:12px 14px;"><span class="badge badge-lime">2023 – Sekarang</span></td>
+              </tr>
+              <tr>
+                <td style="border:1px solid rgba(0,212,255,0.07);padding:12px 14px;color:var(--text);">SMA N 1 Cirebon</td>
+                <td style="border:1px solid rgba(0,212,255,0.07);padding:12px 14px;"><span class="badge">2020 – 2023</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <span class="num">3+</span>
+            <div class="lbl">Tahun Organisasi</div>
+          </div>
+          <div class="stat-box">
+            <span class="num">8+</span>
+            <div class="lbl">Event Kepanitiaan</div>
+          </div>
+          <div class="stat-box">
+            <span class="num">4</span>
+            <div class="lbl">Project Teknis</div>
+          </div>
+          <div class="stat-box">
+            <span class="num" style="color:var(--lime);">TRO</span>
+            <div class="lbl">Automation Engineering</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap fade-in">
+    <div class="section-label">02 // Organizational Log</div>
+    <h2>Pengalaman Organisasi</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nama Organisasi</th>
+          <th>Jabatan</th>
+          <th>Periode</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Himpunan Mahasiswa Teknologi Rekayasa Otomasi</td>
+          <td><span class="badge badge-lime">Kepala Divisi Kurikulum Kaderisasi</span></td>
+          <td class="year-tag">2025 – 2026</td>
+        </tr>
+        <tr>
+          <td>BEM Sekolah Vokasi Universitas Diponegoro</td>
+          <td><span class="badge">Staff Muda Divisi Kajian & Kurikulum Kaderisasi</span></td>
+          <td class="year-tag">2024 – 2025</td>
+        </tr>
+        <tr>
+          <td>Himpunan Mahasiswa Teknologi Rekayasa Otomasi</td>
+          <td><span class="badge badge-violet">Staff Muda Divisi Potensi Kaderisasi</span></td>
+          <td class="year-tag">2024 – 2025</td>
+        </tr>
+        <tr>
+          <td>BEM Sekolah Vokasi Universitas Diponegoro</td>
+          <td><span class="badge">Internship Divisi Kajian & Kurikulum Kaderisasi</span></td>
+          <td class="year-tag">2023 – 2024</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-wrap fade-in" style="padding-top:0;">
+    <div class="section-label">03 // Event Log</div>
+    <h2>Pengalaman Kepanitiaan</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nama Kegiatan</th>
+          <th>Jabatan</th>
+          <th>Penyelenggara</th>
+          <th>Tahun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Leadership Training</td>
+          <td><span class="badge badge-lime">Steering Committee</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2026</td>
+        </tr>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Pra Dasar</td>
+          <td><span class="badge badge-lime">Steering Committee</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2025</td>
+        </tr>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Tingkat Dasar</td>
+          <td><span class="badge">Koordinator Logistik</span></td>
+          <td>BEM Sekolah Vokasi</td>
+          <td class="year-tag">2025</td>
+        </tr>
+        <tr>
+          <td>Class Of Development</td>
+          <td><span class="badge">Steering Committee</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2025</td>
+        </tr>
+        <tr>
+          <td>PKKMB & PENDIKAR</td>
+          <td><span class="badge">Steering Committee</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2025</td>
+        </tr>
+        <tr>
+          <td>Class Of Development</td>
+          <td><span class="badge badge-violet">Ketua Pelaksana</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2024</td>
+        </tr>
+        <tr>
+          <td>PKKMB & PENDIKAR</td>
+          <td><span class="badge badge-violet">Wakil Ketua Pelaksana</span></td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2024</td>
+        </tr>
+        <tr>
+          <td>ODM Sekolah Vokasi</td>
+          <td><span class="badge">Koordinator Lapangan</span></td>
+          <td>BEM Sekolah Vokasi</td>
+          <td class="year-tag">2024</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-wrap fade-in" style="padding-top:0;">
+    <div class="section-label">04 // Training Log</div>
+    <h2>Pengalaman Pelatihan</h2>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nama Kegiatan</th>
+          <th>Penyelenggara</th>
+          <th>Tahun</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pelatihan PLC</td>
+          <td><span class="badge badge-lime">WECON Indonesia</span></td>
+          <td class="year-tag">2026</td>
+        </tr>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Tingkat Dasar</td>
+          <td>BEM Sekolah Vokasi</td>
+          <td class="year-tag">2024</td>
+        </tr>
+        <tr>
+          <td>Visiting Profesor Teknologi Rekayasa Otomasi</td>
+          <td>Teknologi Rekayasa Otomasi</td>
+          <td class="year-tag">2024</td>
+        </tr>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Leadership Training</td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2024</td>
+        </tr>
+        <tr>
+          <td>Latihan Kepemimpinan Manajemen Mahasiswa Pra Dasar</td>
+          <td>HIMATRO</td>
+          <td class="year-tag">2023</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap fade-in">
+    <div class="section-label">05 // Project Log</div>
+    <h2>Pengalaman Project</h2>
+    <div class="projects-grid">
+      <div class="proj-card">
+        <div class="proj-num">PROJ — 001</div>
+        <div class="proj-icon"><i class="fas fa-robot"></i></div>
+        <div class="proj-title">Rancang Bangun Sistem Sorting Warna Menggunakan Conveyor dan Robotic Arm Dengan Arduino Uno</div>
+        <div class="proj-year"><span class="status-dot"></span>2026 – Sekarang</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">PROJ — 002</div>
+        <div class="proj-icon"><i class="fas fa-water"></i></div>
+        <div class="proj-title">Rancang Bangun Sistem Kontrol Level Tangki Air Menggunakan Sensor Ultrasonik JSN-SR04T dan Motorized Valve Berbasis Arduino Uno</div>
+        <div class="proj-year">2025</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">PROJ — 003</div>
+        <div class="proj-icon"><i class="fas fa-cube"></i></div>
+        <div class="proj-title">Rancang Bangun Rak</div>
+        <div class="proj-year">2024</div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">PROJ — 004</div>
+        <div class="proj-icon"><i class="fas fa-microchip"></i></div>
+        <div class="proj-title">Membuat Modul PCB Full Wave Rectifier</div>
+        <div class="proj-year">2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <div id="contact" class="section-wrap fade-in" style="padding-bottom:0;">
+    <div class="section-label">06 // Communication Link</div>
+    <h2>Hubungi Saya</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-tagline">Mari <span>Berkolaborasi</span><br>& Berkembang</p>
+        <p class="contact-sub">Saya terbuka untuk diskusi, kolaborasi project, dan berbagai kesempatan di bidang teknologi otomasi dan rekayasa sistem.</p>
+        <a href="mailto:amnyazra26@gmail.com" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Kirim Pesan</a>
+      </div>
+      <div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-label">Email Pribadi</div>
+            <div class="contact-val"><a href="mailto:amnyazra26@gmail.com">amnyazra26@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-university"></i></div>
+          <div>
+            <div class="contact-label">Email Akademik</div>
+            <div class="contact-val"><a href="mailto:roushanfikriel@students.undip.ac.id">roushanfikriel@students.undip.ac.id</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-val"><a href="https://wa.me/62881022154103">+62 881022154103</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="contact-label">Lokasi</div>
+            <div class="contact-val">Semarang, Jawa Tengah</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">
+    &copy; 2026 <span>Roushan Fikri El Amny Azra</span> — Teknologi Rekayasa Otomasi, UNDIP
+  </div>
+  <div class="footer-links">
+    <a href="mailto:amnyazra26@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://wa.me/62881022154103" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="#home" title="Back to top"><i class="fas fa-chevron-up"></i></a>
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  fadeEls.forEach(el => obs.observe(el));
+
+  // Active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--cyan)' : '';
+    });
+  });
+</script>
+</body>
+</html>
